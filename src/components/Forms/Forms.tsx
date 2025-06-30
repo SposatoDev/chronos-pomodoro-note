@@ -1,3 +1,4 @@
+import { Cycle } from "../Cycles/Cycle";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
 import styles from "./Styles.module.css";
 
@@ -15,7 +16,7 @@ export function Forms() {
       </div>
 
       <div className={styles.formRow}>
-        <p>Ciclos</p>
+        <Cycle />
       </div>
     </>
   );
