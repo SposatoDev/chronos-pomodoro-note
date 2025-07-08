@@ -1,4 +1,10 @@
-import { HistoryIcon, HouseIcon, SettingsIcon, SunIcon } from "lucide-react";
+import {
+  HistoryIcon,
+  HouseIcon,
+  MoonIcon,
+  SettingsIcon,
+  SunIcon,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 
 import styles from "./Styles.module.css";
@@ -6,7 +12,17 @@ import styles from "./Styles.module.css";
 export function Menu() {
   type AvailableThemes = "dark" | "light";
 
-  const [theme, setTheme] = useState<AvailableThemes>("dark");
+  const nextThemeIcon = {
+    dark: <SunIcon />,
+    light: <MoonIcon />,
+  };
+
+  const [theme, setTheme] = useState<AvailableThemes>(() => {
+    const storageTheme = localStorage.getItem("theme") as
+      | AvailableThemes
+      | "dark";
+    return storageTheme;
+  });
   // useState utilizado para criar e controlar um estado dentro de um componente
   // [Armazena o valor atual, function para atualizar esse valor]
 
@@ -20,6 +36,7 @@ export function Menu() {
 
   useEffect(() => {
     document.documentElement.setAttribute("Data-theme", theme);
+    localStorage.setItem("theme", theme);
   }, [theme]); // Executa o useEffect apenas quando o theme muda.
 
   return (
@@ -50,7 +67,7 @@ export function Menu() {
         title="Theme"
         onClick={handleClick}
       >
-        <SunIcon />
+        {nextThemeIcon[theme]}
       </a>
     </nav>
   );
