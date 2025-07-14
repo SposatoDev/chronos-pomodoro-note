@@ -2,6 +2,7 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
+
 import styles from "./Styles.module.css";
 
 export function Forms() {
