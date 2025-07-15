@@ -2,7 +2,7 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
-import { useTaskContext } from "../../contexts/TaskContext";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 import styles from "./Styles.module.css";
 
