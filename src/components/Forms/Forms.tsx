@@ -2,10 +2,13 @@ import { PlayCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
+import { useTaskContext } from "../../contexts/TaskContext";
 
 import styles from "./Styles.module.css";
 
 export function Forms() {
+  const { state } = useTaskContext();
+
   return (
     <>
       <form action="" className="form">
@@ -15,7 +18,7 @@ export function Forms() {
       </form>
 
       <div className={styles.formRow}>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>Lorem ipsum dolor sit {state.config.worktime} amet.</p>
       </div>
 
       <div className={styles.formRow}>
