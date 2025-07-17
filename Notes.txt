@@ -1,0 +1,32 @@
+// Anotações de códigos:
+
+import { TimerIcon } from 'lucide-react';
+
+// Hook UseState:
+
+UseState em formulários é utilizado para obter o valor do input em tempo real para quando é necessário a validação de dados inseridos (funciona a base de re-renderizações, para pegar o valor mais atual digitado).
+
+{ state, setState } = UseState()
+
+value={state}
+onChange={(e) => setState(e.target.value)}
+
+// Hook UseRef:
+
+UseRef é utilizado quando não é necessário a validação de dados e portanto, é verificado após o envio e renderização (Apenas renderiza quando é enviado o formulário).
+
+*Acesso ao valor do input após o envio do formulário.
+
+const Input = UseRef<Tipo de elemento que ele vai analisar>(null)
+
+ref = {Input}
+
+// Hook UseEffect:
+
+UseEffect é utilizado para monitorar uma variável ou estado.
+
+UseEffect(()=>{
+  console.log(state)
+}, [state])
+
+*Assim, sempre que tiver uma alteração no state o UseEffect é ativado.
