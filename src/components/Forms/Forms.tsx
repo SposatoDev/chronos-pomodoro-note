@@ -5,6 +5,8 @@ import { DefaultInput } from "../DefaultInput/DefaultInput";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { useRef } from "react";
 import type { Taskmodel } from "../../models/TaskModel";
+import { GetNextCycle } from "../../utils/GetNextCycle";
+import { GetNextType } from "../../utils/GetNextType";
 
 import styles from "./Styles.module.css";
 
@@ -12,6 +14,10 @@ export function Forms() {
   const { state, setState } = useTaskContext();
 
   const taskNameInput = useRef<HTMLInputElement>(null);
+
+  const nextCycle = GetNextCycle(state.currentCycle);
+
+  const nextType = GetNextType(nextCycle);
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -25,6 +31,8 @@ export function Forms() {
       return;
     }
 
+    console.log("O formulário está sendo enviado!");
+
     const newTask: Taskmodel = {
       id: Date.now().toString(),
       name: taskName,
@@ -32,17 +40,19 @@ export function Forms() {
       completeDate: null,
       interruptDate: null,
       duration: 1,
-      type: "worktime",
+      type: nextType,
     };
 
     const secondsRemaining = newTask.duration * 60;
+
+    console.log("newTask:", { ...newTask });
 
     setState((prevState) => {
       return {
         ...prevState,
         config: { ...prevState.config },
         activeTask: newTask,
-        currentCycle: 1,
+        currentCycle: nextCycle,
         secondsRemaining,
         formattedSecondsRemaining: "00:00",
         tasks: [...prevState.tasks, newTask],
@@ -66,7 +76,7 @@ export function Forms() {
         </div>
 
         <div className={styles.formRow}>
-          <DefaultButton icon={<PlayCircleIcon />} />
+          <DefaultButton buttonType="submit" icon={<PlayCircleIcon />} />
         </div>
       </form>
     </>
