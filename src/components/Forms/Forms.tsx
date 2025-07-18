@@ -9,6 +9,7 @@ import { GetNextCycle } from "../../utils/GetNextCycle";
 import { GetNextType } from "../../utils/GetNextType";
 
 import styles from "./Styles.module.css";
+import { FormatSecondsToMinutes } from "../../utils/FormatSecondsToMinutes";
 
 export function Forms() {
   const { state, setState } = useTaskContext();
@@ -37,7 +38,7 @@ export function Forms() {
       startDate: Date.now(),
       completeDate: null,
       interruptDate: null,
-      duration: 1,
+      duration: state.config[nextType],
       type: nextType,
     };
 
@@ -52,7 +53,7 @@ export function Forms() {
         activeTask: newTask,
         currentCycle: nextCycle,
         secondsRemaining,
-        formattedSecondsRemaining: "00:00",
+        formattedSecondsRemaining: FormatSecondsToMinutes(secondsRemaining),
         tasks: [...prevState.tasks, newTask],
       };
     });
@@ -71,7 +72,7 @@ export function Forms() {
         </div>
 
         <div className={styles.formRow}>
-          <p>Lorem ipsum dolor sit {state.config.worktime} amet.</p>
+          <p>Próximo intervalo é de {state.config[nextType]} minutos.</p>
         </div>
 
         <div className={styles.formRow}>
