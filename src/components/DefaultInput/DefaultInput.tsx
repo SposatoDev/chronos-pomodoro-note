@@ -1,21 +1,20 @@
 import styles from "./Styles.module.css";
 
-import type React from "react";
-
 type DefaultInputProps = {
-  labeltext: string;
+  id: string;
+  labelText: string;
 } & React.ComponentProps<"input">;
 
-export function DefaultInput({ type, labeltext }: DefaultInputProps) {
+export function DefaultInput({
+  id,
+  type,
+  labelText,
+  ...rest
+}: DefaultInputProps) {
   return (
     <>
-      <label htmlFor="">{labeltext}</label>
-      <input
-        className={styles.input}
-        type={type}
-        placeholder="Digite algo"
-        id="meuInput"
-      />
+      <label htmlFor={id}>{labelText}</label>
+      <input className={styles.input} type={type} id={id} {...rest} />
     </>
   );
 }

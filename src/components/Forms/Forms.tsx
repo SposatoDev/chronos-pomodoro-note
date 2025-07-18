@@ -22,7 +22,7 @@ export function Forms() {
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (taskNameInput.current == null) return;
+    if (taskNameInput.current === null) return;
 
     const taskName = taskNameInput.current.value.trim();
 
@@ -30,8 +30,6 @@ export function Forms() {
       alert("Digite o nome da tarefa");
       return;
     }
-
-    console.log("O formulário está sendo enviado!");
 
     const newTask: Taskmodel = {
       id: Date.now().toString(),
@@ -64,7 +62,12 @@ export function Forms() {
     <>
       <form onSubmit={handleSubmit} action="" className="form">
         <div className={styles.formRow}>
-          <DefaultInput type="text" labeltext="Task" ref={taskNameInput} />
+          <DefaultInput
+            id="meuInput"
+            type="text"
+            labelText="Task"
+            ref={taskNameInput}
+          />
         </div>
 
         <div className={styles.formRow}>
