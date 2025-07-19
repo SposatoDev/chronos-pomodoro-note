@@ -1,4 +1,4 @@
-import { PlayCircleIcon } from "lucide-react";
+import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
@@ -7,9 +7,9 @@ import { useRef } from "react";
 import type { Taskmodel } from "../../models/TaskModel";
 import { GetNextCycle } from "../../utils/GetNextCycle";
 import { GetNextType } from "../../utils/GetNextType";
+import { FormatSecondsToMinutes } from "../../utils/FormatSecondsToMinutes";
 
 import styles from "./Styles.module.css";
-import { FormatSecondsToMinutes } from "../../utils/FormatSecondsToMinutes";
 
 export function Forms() {
   const { state, setState } = useTaskContext();
@@ -67,7 +67,9 @@ export function Forms() {
             id="meuInput"
             type="text"
             labelText="Task"
+            placeholder="Digite algo"
             ref={taskNameInput}
+            disabled={!!state.activeTask}
           />
         </div>
 
@@ -75,12 +77,29 @@ export function Forms() {
           <p>Próximo intervalo é de {state.config[nextType]} minutos.</p>
         </div>
 
-        <div className={styles.formRow}>
-          <Cycle />
-        </div>
+        {state.currentCycle > 0 && (
+          <div className={styles.formRow}>
+            <Cycle />
+          </div>
+        )}
 
         <div className={styles.formRow}>
-          <DefaultButton buttonType="submit" icon={<PlayCircleIcon />} />
+          {!state.activeTask ? (
+            <DefaultButton
+              aria-label="Iniciar uma nova tarefa"
+              title="Iniciar uma nova tarefa"
+              buttonType="submit"
+              icon={<PlayCircleIcon />}
+            />
+          ) : (
+            <DefaultButton
+              aria-label="Interromper tarefa"
+              title="Interromper tarefa"
+              buttonType="button"
+              color="red"
+              icon={<StopCircleIcon />}
+            />
+          )}
         </div>
       </form>
     </>
