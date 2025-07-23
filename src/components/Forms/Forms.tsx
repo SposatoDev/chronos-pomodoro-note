@@ -59,6 +59,23 @@ export function Forms() {
     });
   }
 
+  function handleInterrupt() {
+    setState((prevState) => {
+      return {
+        ...prevState,
+        activeTask: null,
+        secondsRemaining: 0,
+        formattedSecondsRemaining: "00:00",
+        tasks: prevState.tasks.map((task) => {
+          if (prevState.activeTask && prevState.activeTask.id === task.id) {
+            return { ...task, interruptDate: Date.now() };
+          }
+          return task;
+        }),
+      };
+    });
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit} action="" className="form">
@@ -90,6 +107,7 @@ export function Forms() {
               title="Iniciar uma nova tarefa"
               buttonType="submit"
               icon={<PlayCircleIcon />}
+              key="submit"
             />
           ) : (
             <DefaultButton
@@ -98,6 +116,8 @@ export function Forms() {
               buttonType="button"
               color="red"
               icon={<StopCircleIcon />}
+              onClick={handleInterrupt}
+              key="interrupt"
             />
           )}
         </div>
