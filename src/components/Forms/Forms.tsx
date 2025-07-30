@@ -43,12 +43,24 @@ export function Forms() {
     };
 
     console.log("newTask:", { ...newTask });
+    console.log(nextType);
 
     dispatch({ type: TaskActionType.START_TASK, payload: newTask });
   }
 
   function handleInterrupt() {
     dispatch({ type: TaskActionType.INTERRUPT_TASK });
+  }
+
+  function handleMessage(child: Taskmodel["type"]) {
+    switch (child) {
+      case "workTime":
+        return <span>Foque por {state.config.workTime}min</span>;
+      case "shortBreakTime":
+        return <span>Descanse por {state.config.shortBreakTime}min</span>;
+      case "longBreakTime":
+        return <span>Próximo descanso será longo</span>;
+    }
   }
 
   return (
@@ -66,7 +78,10 @@ export function Forms() {
         </div>
 
         <div className={styles.formRow}>
-          <p>Próximo intervalo é de {state.config[nextType]} minutos.</p>
+          {!state.activeTask && (
+            <p>Próximo intervalo é de {state.config[nextType]} minutos.</p>
+          )}
+          {!!state.activeTask && handleMessage(state.activeTask.type)}
         </div>
 
         {state.currentCycle > 0 && (
