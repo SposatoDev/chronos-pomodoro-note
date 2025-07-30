@@ -10,7 +10,6 @@ import { GetNextType } from "../../utils/GetNextType";
 import { TaskActionType } from "../../contexts/TaskContext/actionType";
 
 import styles from "./Styles.module.css";
-import { TimerWorkerManager } from "../../workers/TimerWorkerManager";
 
 export function Forms() {
   const { state, dispatch } = useTaskContext();
@@ -44,10 +43,6 @@ export function Forms() {
     };
 
     dispatch({ type: TaskActionType.START_TASK, payload: newTask });
-
-    const worker = TimerWorkerManager.getInstance();
-
-    worker.postMessage(state.activeTask?.type);
   }
 
   function handleInterrupt() {
