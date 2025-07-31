@@ -8,6 +8,7 @@ import type { Taskmodel } from "../../models/TaskModel";
 import { GetNextCycle } from "../../utils/GetNextCycle";
 import { GetNextType } from "../../utils/GetNextType";
 import { TaskActionType } from "../../contexts/TaskContext/actionType";
+import { messages } from "../adapters/messages";
 
 import styles from "./Styles.module.css";
 
@@ -28,7 +29,7 @@ export function Forms() {
     const taskName = taskNameInput.current.value.trim();
 
     if (!taskName) {
-      alert("Digite o nome da tarefa");
+      messages.warning("Digite o nome da tarefa");
       return;
     }
 
