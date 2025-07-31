@@ -44,10 +44,15 @@ export function Forms() {
     };
 
     dispatch({ type: TaskActionType.START_TASK, payload: newTask });
+
+    messages.dismiss();
+    messages.success("Tarefa iniciada");
   }
 
   function handleInterrupt() {
     dispatch({ type: TaskActionType.INTERRUPT_TASK });
+    messages.dismiss();
+    messages.error("Tarefa interrompida");
   }
 
   function handleMessage(child: Taskmodel["type"]) {
