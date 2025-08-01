@@ -3,7 +3,7 @@ import { GenericHtml } from "../../components/GenericHtml";
 import { Heading } from "../../components/Heading/Heading";
 import { MainTemplate } from "../../templates/MainTemplates";
 
-export function Pomodoro() {
+export function AboutPomodoro() {
   return (
     <>
       <MainTemplate>
