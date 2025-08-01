@@ -21,6 +21,8 @@ export function Forms() {
 
   const nextType = GetNextType(nextCycle);
 
+  const lastTaskName = state.tasks[state.tasks.length - 1]?.name || "";
+
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -77,6 +79,7 @@ export function Forms() {
             placeholder="Digite algo"
             ref={taskNameInput}
             disabled={!!state.activeTask}
+            defaultValue={lastTaskName}
           />
         </div>
 
