@@ -1,6 +1,7 @@
 import { Container } from "../../components/Container/Container";
 import { GenericHtml } from "../../components/GenericHtml";
 import { Heading } from "../../components/Heading/Heading";
+import { RouterLink } from "../../components/RouterLink";
 import { MainTemplate } from "../../templates/MainTemplates";
 
 export function AboutPomodoro() {
@@ -52,8 +53,8 @@ export function AboutPomodoro() {
             <p>
               Você pode configurar o tempo de foco, descanso curto e descanso
               longo do jeito que quiser! Basta acessar a{" "}
-              <a href="/settings">página de configurações</a> e ajustar os
-              minutos como preferir.
+              <RouterLink href="/settings/">página de configurações</RouterLink>{" "}
+              e ajustar os minutos como preferir.
             </p>
 
             <h3>🔁 Ciclos organizados em sequência</h3>
@@ -98,9 +99,9 @@ export function AboutPomodoro() {
             <h3>📊 Histórico automático</h3>
             <p>
               Todas as suas tarefas e ciclos concluídos ficam salvos no{" "}
-              <a href="/history">histórico</a>, com status de completas ou
-              interrompidas. Assim, você consegue acompanhar sua evolução ao
-              longo do tempo.
+              <RouterLink href="/history/">histórico</RouterLink>, com status de
+              completas ou interrompidas. Assim, você consegue acompanhar sua
+              evolução ao longo do tempo.
             </p>
 
             <h2>Por que usar o Chronos Pomodoro?</h2>

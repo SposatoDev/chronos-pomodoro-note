@@ -22,6 +22,8 @@ export function MainRouter() {
           <Route path="/" element={<Home />} />
           <Route path="/about-pomodoro/" element={<AboutPomodoro />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/history/" />
+          <Route path="/settings/" />
         </Routes>
         <ScrollToTop />
       </BrowserRouter>
