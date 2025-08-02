@@ -59,6 +59,12 @@ export function taskReducer(state: TaskStatemodel, action: TaskType) {
         }),
       };
     }
+    case TaskActionType.PAUSE_TASK: {
+      return {
+        ...state,
+        isPaused: true,
+      };
+    }
   }
 
   return state;

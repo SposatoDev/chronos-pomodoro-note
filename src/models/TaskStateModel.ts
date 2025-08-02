@@ -5,6 +5,7 @@ export type TaskStatemodel = {
   secondsRemaining: number;
   formattedSecondsRemaining: string;
   activeTask: Taskmodel | null;
+  isPaused: boolean;
   currentCycle: number;
   config: {
     workTime: number;

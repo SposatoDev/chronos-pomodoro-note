@@ -41,10 +41,16 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
       worker.terminate();
     }
 
+    if (state.isPaused) {
+      console.log("Pausar task");
+
+      worker.terminate();
+    }
+
     document.title = `${state.formattedSecondsRemaining} - Chronos`;
 
     worker.postMessage(state);
-  }, [worker, state]);
+  }, [worker, state, state.isPaused]);
 
   useEffect(() => {
     if (state.activeTask && playBeepRef.current === null) {

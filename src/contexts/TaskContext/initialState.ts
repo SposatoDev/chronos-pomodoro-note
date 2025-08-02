@@ -5,6 +5,7 @@ export const initialState: TaskStatemodel = {
   secondsRemaining: 0,
   formattedSecondsRemaining: "00:00",
   activeTask: null,
+  isPaused: false,
   currentCycle: 0,
   config: {
     workTime: 25,
