@@ -1,4 +1,4 @@
-import { PlayCircleIcon, StopCircleIcon } from "lucide-react";
+import { PauseCircleIcon, PlayCircleIcon, StopCircleIcon } from "lucide-react";
 import { Cycle } from "../Cycles/Cycle";
 import { DefaultButton } from "../DefaultButton/DefaultButton";
 import { DefaultInput } from "../DefaultInput/DefaultInput";
@@ -57,6 +57,12 @@ export function Forms() {
     messages.error("Tarefa interrompida");
   }
 
+  function handlePause() {
+    dispatch({ type: TaskActionType.PAUSE_TASK });
+    messages.dismiss();
+    messages.info("Tarefa pausada");
+  }
+
   function handleMessage(child: Taskmodel["type"]) {
     switch (child) {
       case "workTime":
@@ -106,15 +112,27 @@ export function Forms() {
               key="submit"
             />
           ) : (
-            <DefaultButton
-              aria-label="Interromper tarefa"
-              title="Interromper tarefa"
-              buttonType="button"
-              color="red"
-              icon={<StopCircleIcon />}
-              onClick={handleInterrupt}
-              key="interrupt"
-            />
+            <div style={{ display: "flex", gap: "2.4rem" }}>
+              <DefaultButton
+                aria-label="Interromper tarefa"
+                title="Interromper tarefa"
+                buttonType="button"
+                color="red"
+                icon={<StopCircleIcon />}
+                onClick={handleInterrupt}
+                key="interrupt"
+              />
+
+              <DefaultButton
+                aria-label="Pausar tarefa"
+                title="Pausar tarefa"
+                buttonType="button"
+                color="blue"
+                icon={<PauseCircleIcon />}
+                onClick={handlePause}
+                key="pause"
+              />
+            </div>
           )}
         </div>
       </form>

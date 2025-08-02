@@ -3,7 +3,7 @@ import type React from "react";
 
 type DefaultButtonProps = {
   icon: React.ReactNode;
-  color?: "green" | "red";
+  color?: "green" | "red" | "blue";
   buttonType: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
 } & React.ComponentProps<"button">;
 
