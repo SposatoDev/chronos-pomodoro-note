@@ -45,10 +45,18 @@ export function Forms() {
       type: nextType,
     };
 
-    dispatch({ type: TaskActionType.START_TASK, payload: newTask });
+    if (!state.isPaused && !state.activeTask) {
+      dispatch({ type: TaskActionType.START_TASK, payload: newTask });
 
-    messages.dismiss();
-    messages.success("Tarefa iniciada");
+      messages.dismiss();
+      messages.success("Tarefa iniciada");
+    }
+
+    if (state.isPaused && state.activeTask) {
+      dispatch({ type: TaskActionType.RESUME_TASK });
+      messages.dismiss();
+      messages.success("Retomando tarefa");
+    }
   }
 
   function handleInterrupt() {
@@ -103,7 +111,7 @@ export function Forms() {
         )}
 
         <div className={styles.formRow}>
-          {!state.activeTask ? (
+          {!state.activeTask || state.isPaused ? (
             <DefaultButton
               aria-label="Iniciar uma nova tarefa"
               title="Iniciar uma nova tarefa"

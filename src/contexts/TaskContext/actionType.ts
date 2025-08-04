@@ -4,6 +4,7 @@ export enum TaskActionType {
   START_TASK = "START_TASK",
   INTERRUPT_TASK = "INTERRUPT_TASK",
   PAUSE_TASK = "PAUSE_TASK",
+  RESUME_TASK = "RESUME_TASK",
   RESET_TASK = "RESET_TASK",
   COUNT_DOWN = "COUNT_DOWN",
   COMPLETE_TASK = "COMPLETE_TASK",
@@ -29,4 +30,7 @@ export type TaskType =
     }
   | {
       type: TaskActionType.PAUSE_TASK;
+    }
+  | {
+      type: TaskActionType.RESUME_TASK;
     };

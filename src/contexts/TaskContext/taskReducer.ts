@@ -13,6 +13,7 @@ export function taskReducer(state: TaskStatemodel, action: TaskType) {
       return {
         ...state,
         activeTask: newTask,
+        isPaused: false,
         currentCycle: nextCycle,
         secondsRemaining,
         formattedSecondsRemaining: FormatSecondsToMinutes(secondsRemaining),
@@ -63,6 +64,12 @@ export function taskReducer(state: TaskStatemodel, action: TaskType) {
       return {
         ...state,
         isPaused: true,
+      };
+    }
+    case TaskActionType.RESUME_TASK: {
+      return {
+        ...state,
+        isPaused: false,
       };
     }
   }

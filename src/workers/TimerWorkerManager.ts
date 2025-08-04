@@ -1,6 +1,11 @@
+import type React from "react";
 import type { TaskStatemodel } from "../models/TaskStateModel";
 
 let instance: TimerWorkerManager | null = null;
+
+type PostMessageProps = {
+  type: React.ReactNode;
+};
 
 export class TimerWorkerManager {
   private worker: Worker;
@@ -17,7 +22,7 @@ export class TimerWorkerManager {
     return instance;
   }
 
-  postMessage(message: TaskStatemodel) {
+  postMessage(message: TaskStatemodel | PostMessageProps) {
     this.worker.postMessage(message);
   }
 

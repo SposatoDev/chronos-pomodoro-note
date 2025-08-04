@@ -43,8 +43,11 @@ export function TaskContextProvider({ children }: TaskContextProviderProps) {
 
     if (state.isPaused) {
       console.log("Pausar task");
+      worker.postMessage({ type: "PAUSE" });
+    }
 
-      worker.terminate();
+    if (!state.isPaused && state.activeTask) {
+      worker.postMessage({ type: "RESUME" });
     }
 
     document.title = `${state.formattedSecondsRemaining} - Chronos`;
