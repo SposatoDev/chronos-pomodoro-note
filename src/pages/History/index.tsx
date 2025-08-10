@@ -9,9 +9,10 @@ import { formatDate } from "../../utils/formatDate";
 import { getTaskStatus } from "../../utils/getTaskStatus";
 import { useState } from "react";
 import { orderBy } from "lodash";
+import { TaskActionType } from "../../contexts/TaskContext/actionType";
+import { messages } from "../../components/adapters/messages";
 
 import styles from "./style.module.css";
-import { TaskActionType } from "../../contexts/TaskContext/actionType";
 
 export function History() {
   const { state, dispatch } = useTaskContext();
@@ -49,9 +50,12 @@ export function History() {
   );
 
   function handleResetHistory() {
-    if (!confirm("Tem certeza?")) return;
-
-    dispatch({ type: TaskActionType.RESET_TASK });
+    messages.dismiss();
+    messages.confirm("Confirme sua ação.", (confirmation) => {
+      if (confirmation === true) {
+        dispatch({ type: TaskActionType.RESET_TASK });
+      } else return;
+    });
   }
 
   return (
