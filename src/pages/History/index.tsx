@@ -7,7 +7,7 @@ import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 import { FormatTaskType } from "../../utils/FormatTaskType";
 import { formatDate } from "../../utils/formatDate";
 import { getTaskStatus } from "../../utils/getTaskStatus";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { orderBy } from "lodash";
 import { TaskActionType } from "../../contexts/TaskContext/actionType";
 import { messages } from "../../components/adapters/messages";
@@ -17,6 +17,12 @@ import styles from "./style.module.css";
 export function History() {
   const { state, dispatch } = useTaskContext();
   const hasTask = state.tasks.length > 0;
+
+  useEffect(() => {
+    return () => {
+      messages.dismiss();
+    };
+  }, []);
 
   type sortConfigsProps = {
     key: string;
