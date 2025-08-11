@@ -19,10 +19,11 @@ export function Menu() {
   };
 
   const [theme, setTheme] = useState<AvailableThemes>(() => {
-    const storageTheme = localStorage.getItem("theme") as
-      | AvailableThemes
-      | "dark";
-    return storageTheme;
+    const storageTheme = localStorage.getItem("theme");
+    if (storageTheme === "dark" || storageTheme === "light") {
+      return storageTheme;
+    }
+    return "dark";
   });
   // useState utilizado para criar e controlar um estado dentro de um componente
   // [Armazena o valor atual, function para atualizar esse valor]
