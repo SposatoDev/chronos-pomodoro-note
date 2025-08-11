@@ -73,6 +73,9 @@ export function taskReducer(state: TaskStatemodel, action: TaskType) {
         isPaused: false,
       };
     }
+    case TaskActionType.CHANGE_SETTINGS: {
+      return { ...state, config: { ...action.payload } };
+    }
   }
 
   return state;
