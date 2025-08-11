@@ -21,7 +21,7 @@ export function MainRouter() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/sposatodev.github.io/" element={<Home />} />
           <Route path="/about-pomodoro/" element={<AboutPomodoro />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/history/" element={<History />} />
