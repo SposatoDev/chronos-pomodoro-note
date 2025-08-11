@@ -19,6 +19,7 @@ export function History() {
   const hasTask = state.tasks.length > 0;
 
   useEffect(() => {
+    document.title = "Histórico - Chronos Pomodoro";
     return () => {
       messages.dismiss();
     };

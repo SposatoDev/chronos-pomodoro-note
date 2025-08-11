@@ -4,7 +4,7 @@ import { MainTemplate } from "../../templates/MainTemplates";
 import { DefaultInput } from "../../components/DefaultInput/DefaultInput";
 import { DefaultButton } from "../../components/DefaultButton/DefaultButton";
 import { SaveIcon } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 import FormStyle from "../../components/Forms/Styles.module.css";
@@ -17,6 +17,11 @@ export function Settings() {
   const longTimeInput = useRef<HTMLInputElement>(null);
 
   const { state, dispatch } = useTaskContext();
+
+  useEffect(() => {
+    document.title = "Configurações - Chronos Pomodoro";
+    return;
+  }, []);
 
   function handleSettings(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
